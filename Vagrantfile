@@ -13,5 +13,5 @@ Vagrant.configure('2') do |config|
     end
 
     config.vm.network "private_network", type: "dhcp"
-    config.vm.provision :shell, :inline => "apt-get update && apt-get install -y rkt acbuild"
+    config.vm.provision :shell, :inline => "apt-get update && apt-get install -y rkt acbuild rng-tools"
 end

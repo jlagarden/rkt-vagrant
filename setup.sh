@@ -1,8 +1,15 @@
 #!/bin/bash
 
 echo "installing additional packages"
-apt-get update && apt-get install -y rkt acbuild rng-tools expect
+apt-get update && apt-get install -y acbuild rng-tools expect systemd-container
 
+gpg --recv-key 18AD5014C99EF7E3BA5F6CE950BDD3E0FC8A365E
+wget https://github.com/rkt/rkt/releases/download/v1.25.0/rkt_1.25.0-1_amd64.deb
+wget https://github.com/rkt/rkt/releases/download/v1.25.0/rkt_1.25.0-1_amd64.deb.asc
+gpg --verify rkt_1.25.0-1_amd64.deb.asc
+sudo dpkg -i rkt_1.25.0-1_amd64.deb
+
+su ubuntu
 echo 'HRNGDEVICE=/dev/urandom' >> /etc/default/rng-tools
 
 NAME="Carly Container"
